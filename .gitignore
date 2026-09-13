@@ -1,0 +1,7 @@
+# pis-gogrow is an independent git repo, cloned here by scripts/setup.sh —
+# never tracked, never a submodule.
+/pis-gogrow/
+
+# Ephemeral output from the review/quality-metrics skills — regenerated on
+# each run, not meant to be committed history.
+/docs/reports/
