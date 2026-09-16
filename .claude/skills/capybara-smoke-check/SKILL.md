@@ -30,6 +30,9 @@ bin/dev        # rails + vite, if not already running
 
 If `spec/support/capybara.rb` doesn't exist yet, set it up first per
 `capybara-system-suite`'s "First-time setup" — both skills need the same driver config.
+That skill also documents a real bug in `spec/support/authentication_helpers.rb`'s
+`System#sign_in` (`page.driver.set_cookie` doesn't exist on the Selenium driver this
+project uses) — check that section before this check's `sign_in` call fails on it.
 
 ## The check
 
@@ -38,6 +41,8 @@ Write one throwaway spec, run it, then delete it — it never gets committed:
 ```ruby
 # frozen_string_literal: true
 # spec/system/zz_scratch_check_spec.rb — delete after use, not committed
+
+require "rails_helper"
 
 RSpec.describe "Scratch check" do
   it "does the thing I just built" do

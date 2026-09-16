@@ -39,6 +39,11 @@ Needs a local Chrome/Chromium binary (Selenium Manager fetches the matching driv
 automatically, but not the browser itself) — if `bin/rspec spec/system` fails to launch
 a browser, that's the first thing to check, not a code problem.
 
+`.rspec` in this repo only auto-requires `spec_helper`, not `rails_helper` — every
+spec file needs its own `require "rails_helper"` at the top (like `spec/requests/`
+already does), or the file loads with no Rails/Capybara integration at all and fails
+confusingly (`fixtures` undefined, app constants like `User` unresolved).
+
 ## Where specs live and how they're found
 
 `spec/system/<flow>_spec.rb`, one file per user-facing flow (not per controller —
@@ -51,14 +56,45 @@ or a multi-step form). `config.infer_spec_type_from_file_location!` means files 
 ## Auth
 
 Use the `System` module's `sign_in(user)` / `sign_out` from
-`spec/support/authentication_helpers.rb` (sets the signed `session_token` cookie via
-`page.driver.set_cookie`) — do not reuse the `Request` module's version, it targets a
-different layer and silently does nothing in a browser-driven spec.
+`spec/support/authentication_helpers.rb` — do not reuse the `Request` module's
+version, it targets a different layer and silently does nothing in a browser-driven
+spec.
+
+**Known bug, check before first use:** as committed, `System#sign_in` calls
+`page.driver.set_cookie(...)`, a method that only exists on the `rack_test` driver.
+This project's own `spec/support/capybara.rb` always drives `type: :system` specs
+with `:selenium, using: :headless_chrome` (see above — every page is React, there's
+no plain-HTML fallback), and `Capybara::Selenium::Driver` has no `set_cookie` —
+every system spec fails immediately with `NoMethodError` until this is fixed. Correct
+version (needs a page loaded first, so the browser has a domain to attach the cookie
+to):
+
+```ruby
+module System
+  def sign_in(user)
+    session = user.sessions.create!(role: AuthenticationHelpers.role_for(user))
+    visit "/"
+    page.driver.browser.manage.add_cookie(
+      name: "session_token",
+      value: AuthenticationHelpers.signed_cookie(:session_token, session.id)
+    )
+  end
+
+  def sign_out
+    page.driver.browser.manage.delete_cookie("session_token")
+  end
+end
+```
+
+If `spec/support/authentication_helpers.rb` still has the broken version, fix it
+there before writing any system spec — don't work around it per-spec.
 
 ## Writing a spec
 
 ```ruby
 # frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "Creating a menu" do
   it "shows the new menu in the list" do
