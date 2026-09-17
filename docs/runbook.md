@@ -28,6 +28,7 @@ bin/ci                                     # full local pipeline: rubocop, eslin
 | `rails-security-reviewer` | change touches auth, input, external calls, secrets | `docs/reports/security-review/SECURITY_REVIEW_FINDINGS_<date>.md` |
 | `rails-database-reviewer` | new/changed migration, model, or scope | `docs/reports/database-review/DATABASE_REVIEW_FINDINGS_<date>.md` |
 | `rails-quality-metrics` | asked for a quality/coverage trend report | `docs/reports/quality-metrics/QUALITY_METRICS_<date>.md` |
+| `integration-tests` | every run, `/integration-tests <historia>` | `docs/reports/integration-tests/integration-tests-<dd-mm-aaaa>.md` |
 
 Each review skill has a **Fix mode**: point it at an existing dated report
 and it works through unchecked findings one at a time, checking them off —
@@ -46,6 +47,10 @@ committing inside `pis-gogrow/` is always a separate, explicit step.
 
 ## Where reports go and why
 
-All four review/metrics skills write into **this repo's** `docs/reports/`,
-never into `pis-gogrow/docs/`. That folder is shared with teammates who
-don't use this personal setup — see `docs/architecture.md`.
+The review/metrics skills, and `integration-tests`, all write into **this
+repo's** `docs/reports/`, never into `pis-gogrow/docs/`. That folder is
+shared with teammates who don't use this personal setup — see
+`docs/architecture.md`. Note `integration-tests` uses `dd-mm-aaaa` in its
+filename (one snapshot per day, overwritten on same-day reruns) where the
+other four use `<date>` (ISO, never overwritten) — a deliberate difference,
+not an inconsistency to fix.

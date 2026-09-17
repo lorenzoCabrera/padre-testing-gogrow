@@ -138,3 +138,22 @@ its own test pass.
 - Deferred: each `TODO(integración)` comment added and why.
 - Any infra fix applied (like the `sign_in` bug) or app bug found along the way,
   called out separately from the above.
+
+## Write the report to a file, every run
+
+Give the report above in chat as usual, but also write it to
+`docs/reports/integration-tests/integration-tests-<dd-mm-aaaa>.md` **in this repo**
+(`padre-testing-gogrow/`, never inside `pis-gogrow/`) — one file per command
+invocation, even when it covers several historias (one section per historia inside
+it), so there's a standing record of what a given run touched. `<dd-mm-aaaa>` is
+today's date, e.g. `integration-tests-16-09-2026.md`; if the command runs more than
+once on the same day, overwrite that day's file rather than numbering — it's a
+per-day snapshot, not a log.
+
+Beyond the per-historia content, this file is specifically for visibility into what
+the run actually changed, so include a **files touched** section listing every file
+created or modified during the run — spec files, `TODO(integración)` comments,
+infra fixes (`spec/support/`, `Gemfile`, `spec/spec_helper.rb`, `.gitignore`,
+etc.) — a plain list is enough, `git status --short` in `pis-gogrow/` is the source
+of truth for it. Also name the branch/commit `pis-gogrow` was on for this run, since
+that determines what "already implemented" meant at the time.
