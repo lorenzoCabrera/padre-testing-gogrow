@@ -15,10 +15,12 @@ working notes.
 padre-testing-gogrow/
 ├── AGENTS.md              # this file
 ├── CLAUDE.md              # same instructions, for Claude Code
+├── .ai/
+│   └── skills/            # 10 testing + quality-review skills (plain Markdown, any agent can use them)
 ├── .claude/
 │   ├── settings.json      # Claude-only hook that enforces the secrets rule below
 │   ├── hooks/
-│   └── skills/            # 10 testing + quality-review skills (plain Markdown, any agent can use them)
+│   └── skills -> ../.ai/skills   # symlink so Claude Code still finds the skills
 ├── docs/
 │   ├── architecture.md    # how the two repos relate
 │   ├── runbook.md         # day-to-day commands
@@ -56,7 +58,7 @@ app code.
 
 ## Skills
 
-A skill is a Markdown playbook at `.claude/skills/<name>/SKILL.md`. Its
+A skill is a Markdown playbook at `.ai/skills/<name>/SKILL.md`. Its
 frontmatter `description` says when it applies. Your tool may not load skills
 by itself. **When a task matches a skill below, read that SKILL.md in full
 before starting and follow it step by step.** If two skills could apply, the
@@ -81,7 +83,7 @@ this repo.
 **Slash commands.** Skills mention invocations like
 `/integration-tests <historia>`. Without slash-command support, treat
 "run integration-tests for <historia>" the same way: read
-`.claude/skills/integration-tests/SKILL.md` and follow it with that story
+`.ai/skills/integration-tests/SKILL.md` and follow it with that story
 text.
 
 **Vendored skills.** `pis-gogrow/.claude/skills/` has a separate set from

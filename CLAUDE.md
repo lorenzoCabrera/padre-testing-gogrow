@@ -10,10 +10,12 @@ secrets-reading hook, and working notes.
 
 ```
 padre-testing-gogrow/
+├── .ai/
+│   └── skills/            # my testing + quality-review skills, adapted for this stack
 ├── .claude/
 │   ├── settings.json      # PreToolUse hook: blocks Read/Grep on .env, master.key, etc.
 │   ├── hooks/
-│   └── skills/            # my 9 testing + quality-review skills, adapted for this stack
+│   └── skills -> ../.ai/skills   # symlink so Claude Code still discovers them
 ├── docs/
 │   ├── architecture.md    # how the two repos relate, skill scoping
 │   ├── runbook.md         # day-to-day commands
@@ -41,7 +43,7 @@ shadcn-inertia) — those are unrelated to the ones in this repo and load
 scoped to that subdirectory. See `docs/architecture.md` for how skills from
 both directories coexist in one Claude Code session opened at this root.
 
-## Skills in `.claude/skills/`
+## Skills in `.ai/skills/` (symlinked as `.claude/skills/`)
 
 Adapted from a Java/Spring/Angular reference project (`jp-photo-manager`) to
 this stack. Ten skills across two groups:
