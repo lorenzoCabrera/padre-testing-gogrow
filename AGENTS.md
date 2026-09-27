@@ -15,6 +15,7 @@ working notes.
 padre-testing-gogrow/
 ├── AGENTS.md              # this file
 ├── CLAUDE.md              # same instructions, for Claude Code
+├── opencode.json          # OpenCode: loads .ai/skills, defines /integration-tests, blocks secret reads
 ├── .ai/
 │   └── skills/            # 10 testing + quality-review skills (plain Markdown, any agent can use them)
 ├── .claude/
@@ -80,7 +81,8 @@ descriptions say which one wins.
 The four review/metrics skills write dated reports to `docs/reports/` in
 this repo.
 
-**Slash commands.** Skills mention invocations like
+**Slash commands.** In OpenCode, `/integration-tests <historia>` works
+(defined in `opencode.json`). Skills mention invocations like
 `/integration-tests <historia>`. Without slash-command support, treat
 "run integration-tests for <historia>" the same way: read
 `.ai/skills/integration-tests/SKILL.md` and follow it with that story
