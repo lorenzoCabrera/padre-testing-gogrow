@@ -3,7 +3,8 @@
 Repo orquestador personal alrededor de [`pis-gogrow`](https://github.com/PIS-GoGrow/pis-gogrow)
 (clonado adentro, con su propio git). Acá viven los skills de testing y revisión
 para Claude Code; los reportes van a `docs/reports/` de **este** repo, nunca a
-`pis-gogrow/`. Detalle en `CLAUDE.md` y `docs/runbook.md`.
+`pis-gogrow/`. Detalle en `CLAUDE.md` y `docs/runbook.md`. `docs/reports/` está en
+`.gitignore`: los informes quedan solo en tu disco.
 
 ```bash
 scripts/setup.sh            # clona pis-gogrow si falta
