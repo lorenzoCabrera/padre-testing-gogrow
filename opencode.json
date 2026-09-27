@@ -1,13 +1,25 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "instructions": ["AGENTS.md"],
+  "instructions": [
+    "AGENTS.md"
+  ],
   "skills": {
-    "paths": [".ai/skills"]
+    "paths": [
+      ".ai/skills"
+    ]
   },
   "command": {
     "integration-tests": {
       "description": "Integration coverage for one or more user stories (see .ai/skills/integration-tests)",
       "template": "Read .ai/skills/integration-tests/SKILL.md in full and follow it step by step, using this input as the user story text with its acceptance criteria:\n\n$ARGUMENTS"
+    },
+    "system-tests": {
+      "description": "System tests from historias + Pasos + Esperado (see .ai/skills/system-tests)",
+      "template": "Read .ai/skills/system-tests/SKILL.md in full and follow it step by step, using this input as the blocks of historias, Pasos and Esperado (if it's empty, reply with the input template from that file):\n\n$ARGUMENTS"
+    },
+    "pending-tests": {
+      "description": "Find TODO(integración) comments that are now testable (see .ai/skills/pending-tests)",
+      "template": "Read .ai/skills/pending-tests/SKILL.md in full and follow it step by step. Optional path to narrow the search:\n\n$ARGUMENTS"
     }
   },
   "permission": {

@@ -164,7 +164,7 @@ For each user-facing flow the historia implies:
 
   ```ruby
   # TODO(integración): falta implementar <lo que falta> antes de poder testear
-  # <el escenario concreto de la historia>. Historia: "<historia, resumida>".
+  # <el escenario concreto de la historia>. Historia: IBP-NNN "<historia, resumida>".
   ```
 
   If a later historia finishes what an earlier comment was waiting on, that's the

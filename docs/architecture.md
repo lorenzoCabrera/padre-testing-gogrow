@@ -20,7 +20,7 @@ one project and scopes each by the subdirectory it's found in. Opening a
 session at this repo's root (`padre-testing-gogrow/`) makes both sets
 available at once:
 
-- Skills in `padre-testing-gogrow/.ai/skills/*` (reached through the `.claude/skills` symlink) — the 9 adapted ones —
+- Skills in `padre-testing-gogrow/.ai/skills/*` (reached through the `.claude/skills` symlink) — the 12 adapted ones —
   load **unscoped** (this is the session root).
 - Skills in `pis-gogrow/.claude/skills/*` — the vendored `inertia-rails`
   set — load **scoped** under a `pis-gogrow:` prefix (e.g.

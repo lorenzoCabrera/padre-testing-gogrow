@@ -3,7 +3,7 @@ name: rails-quality-metrics
 description: >-
   Runs pis-gogrow's existing bin/ci pipeline (RuboCop, ESLint, Prettier, tsc, Typelizer
   freshness, bundler-audit, npm audit, Brakeman, RSpec) plus SimpleCov coverage, and
-  reports trend against every previously committed report in this repo's
+  reports trend against every previous report in this repo's
   docs/reports/quality-metrics/ — not just the last run. TRIGGER when asked for a
   quality/coverage report or how the metrics are trending. Deliberately minimal scope:
   no mutation testing, no accessibility auditing, no license/dead-code scanning — none

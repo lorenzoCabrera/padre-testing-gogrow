@@ -1,3 +1,7 @@
 # pis-gogrow is an independent git repo, cloned here by scripts/setup.sh —
 # never tracked, never a submodule.
 /pis-gogrow/
+
+# Informes generados por los skills (defects, integration-tests, system-tests,
+# quality-metrics, reviews) — quedan solo locales, nunca se commitean.
+/docs/reports/

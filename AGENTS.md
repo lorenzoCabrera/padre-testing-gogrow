@@ -15,9 +15,9 @@ working notes.
 padre-testing-gogrow/
 ├── AGENTS.md              # this file
 ├── CLAUDE.md              # same instructions, for Claude Code
-├── opencode.json          # OpenCode: loads .ai/skills, defines /integration-tests, blocks secret reads
+├── opencode.json          # OpenCode: loads .ai/skills, defines /integration-tests, /system-tests, /pending-tests, blocks secret reads
 ├── .ai/
-│   └── skills/            # 10 testing + quality-review skills (plain Markdown, any agent can use them)
+│   └── skills/            # 12 testing + quality-review skills (plain Markdown, any agent can use them)
 ├── .claude/
 │   ├── settings.json      # Claude-only hook that enforces the secrets rule below
 │   ├── hooks/
@@ -26,7 +26,7 @@ padre-testing-gogrow/
 │   ├── architecture.md    # how the two repos relate
 │   ├── runbook.md         # day-to-day commands
 │   ├── glossary.md
-│   └── reports/           # dated findings written by the review skills
+│   └── reports/           # reports written by the skills (gitignored, local only)
 ├── scripts/setup.sh       # clones pis-gogrow if missing (idempotent)
 └── pis-gogrow/            # the actual project, untracked here
 ```
@@ -73,6 +73,8 @@ descriptions say which one wins.
 | `capybara-system-suite` | Adding or fixing committed browser specs under `spec/system/` |
 | `capybara-screenshot` | "Show me what X looks like" or "take a screenshot of X" |
 | `integration-tests` | Writing integration coverage for a user story after it merges to `develop` |
+| `system-tests` | Same as `integration-tests`, but the scenarios come from user-written Pasos/Esperado per block |
+| `pending-tests` | Finding `TODO(integración)` comments now unblocked on `develop` (read-only; asks for the historias) |
 | `rails-code-reviewer` | Reviewing a diff or PR against the conventions in `pis-gogrow/AGENTS.md` |
 | `rails-security-reviewer` | Reviewing changes to auth, OmniAuth, strong params, external input or secrets |
 | `rails-database-reviewer` | Reviewing migrations, associations, validations, queries or indexes |
@@ -81,12 +83,12 @@ descriptions say which one wins.
 The four review/metrics skills write dated reports to `docs/reports/` in
 this repo.
 
-**Slash commands.** In OpenCode, `/integration-tests <historia>` works
-(defined in `opencode.json`). Skills mention invocations like
-`/integration-tests <historia>`. Without slash-command support, treat
-"run integration-tests for <historia>" the same way: read
-`.ai/skills/integration-tests/SKILL.md` and follow it with that story
-text.
+**Slash commands.** In OpenCode, `/integration-tests <historia>`,
+`/system-tests <bloques>` and `/pending-tests [ruta]` work (defined in
+`opencode.json`). Without slash-command support, treat "run
+<command> for <input>" the same way: read `.ai/skills/<command>/SKILL.md`
+and follow it with that input. Input formats and examples are in
+`README.md`.
 
 **Vendored skills.** `pis-gogrow/.claude/skills/` has a separate set from
 upstream `inertia-rails/skills`: `inertia-rails-architecture`,
