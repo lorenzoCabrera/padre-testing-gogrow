@@ -29,6 +29,8 @@ bin/ci                                     # full local pipeline: rubocop, eslin
 | `rails-database-reviewer` | new/changed migration, model, or scope | `docs/reports/database-review/DATABASE_REVIEW_FINDINGS_<date>.md` |
 | `rails-quality-metrics` | asked for a quality/coverage trend report | `docs/reports/quality-metrics/QUALITY_METRICS_<date>.md` |
 | `integration-tests` | every run, `/integration-tests <historia>` | `docs/reports/integration-tests/integration-tests-<dd-mm-aaaa>.md` |
+| `system-tests` | every run, `/system-tests <IBPs + Pasos + Esperado> --- ...` | `docs/reports/system-tests/system-tests-<dd-mm-aaaa>.md` |
+| `pending-tests` | after historias merge, `/pending-tests` | chat only — lists unblocked `TODO(integración)`, read-only |
 
 Each review skill has a **Fix mode**: point it at an existing dated report
 and it works through unchecked findings one at a time, checking them off —

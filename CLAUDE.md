@@ -13,7 +13,7 @@ padre-testing-gogrow/
 ├── .claude/
 │   ├── settings.json      # PreToolUse hook: blocks Read/Grep on .env, master.key, etc.
 │   ├── hooks/
-│   └── skills/            # my 9 testing + quality-review skills, adapted for this stack
+│   └── skills/            # my 12 testing + quality-review skills, adapted for this stack
 ├── docs/
 │   ├── architecture.md    # how the two repos relate, skill scoping
 │   ├── runbook.md         # day-to-day commands
@@ -44,11 +44,13 @@ both directories coexist in one Claude Code session opened at this root.
 ## Skills in `.claude/skills/`
 
 Adapted from a Java/Spring/Angular reference project (`jp-photo-manager`) to
-this stack. Ten skills across two groups:
+this stack. Twelve skills across two groups:
 
 **Testing:** `rspec-developer`, `vitest-rtl-developer`, `capybara-smoke-check`,
 `capybara-system-suite`, `capybara-screenshot`, `integration-tests` (orchestrates the
-other four against a user story's text — run after a story merges to `develop`)
+other four against a user story's text — run after a story merges to `develop`),
+`system-tests` (same, but driven by user-written Pasos/Esperado per scenario),
+`pending-tests` (finds `TODO(integración)` now unblocked on develop, asks for the historias)
 
 **Quality review:** `rails-code-reviewer`, `rails-security-reviewer`,
 `rails-database-reviewer`, `rails-quality-metrics`
