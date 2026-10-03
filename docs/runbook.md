@@ -30,6 +30,7 @@ bin/ci                                     # full local pipeline: rubocop, eslin
 | `rails-quality-metrics` | asked for a quality/coverage trend report | `docs/reports/quality-metrics/QUALITY_METRICS_<date>.md` |
 | `integration-tests` | every run, `/integration-tests <historia>` | `docs/reports/integration-tests/integration-tests-<dd-mm-aaaa>.md` |
 | `system-tests` | every run, `/system-tests <IBPs + Pasos + Esperado> --- ...` | `docs/reports/system-tests/system-tests-<dd-mm-aaaa>.md` |
+| `regression-tests` | every run, `/regression-tests <IBPs + Pasos + Esperado> --- ...` | `docs/reports/regression-tests/regression-tests-<dd-mm-aaaa>.md` |
 | `pending-tests` | after historias merge, `/pending-tests` | chat only — lists unblocked `TODO(integración)`, read-only |
 
 Each review skill has a **Fix mode**: point it at an existing dated report

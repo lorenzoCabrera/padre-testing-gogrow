@@ -14,14 +14,15 @@ cd pis-gogrow && bin/setup
 Abrir el agente en la raíz de este repo para que los comandos estén disponibles:
 
 - **Claude Code:** lee `.claude/skills` (symlink a `.ai/skills`) y `CLAUDE.md`.
-- **OpenCode:** `opencode.json` carga `AGENTS.md`, los skills y define los tres comandos.
+- **OpenCode:** `opencode.json` carga `AGENTS.md`, los skills y define los cuatro comandos.
 - **Otros (Codex, Cursor, Aider…):** leen `AGENTS.md`; sin slash commands, pedir
   "corré system-tests con: <bloques>" y el agente sigue `.ai/skills/system-tests/SKILL.md`.
 
 ## Comandos de testing de historias
 
-Los tres escriben specs **commiteables** en `pis-gogrow/spec/system/` (Capybara +
-Chrome headless) y comparten las mismas reglas:
+`/integration-tests`, `/system-tests` y `/regression-tests` escriben specs
+**commiteables** en `pis-gogrow/spec/system/` (Capybara + Chrome headless) y
+comparten las mismas reglas:
 
 - `pis-gogrow` tiene que estar en `develop` actualizado y limpio; si no, frenan y preguntan.
 - Antes de escribir tests de sistema, listan los tests unitarios faltantes y
@@ -96,6 +97,41 @@ Esperado: … ; con plato agotado … ; con hora límite vencida …
 - Informe: `docs/reports/system-tests/system-tests-<dd-mm-aaaa>.md`, con tabla
   Paso → Esperado → spec → ✅/❌/TODO.
 
+### `/regression-tests` — que las historias queden protegidas y estables
+
+Misma entrada que `/system-tests` (historias + **Pasos** + **Esperado** por
+bloque, con la misma plantilla y los mismos alias), pero parte de los tests que
+**ya existen**: el objetivo es que cada historia quede cubierta por tests que
+existan y sean estables, no escribir tests nuevos.
+
+```
+/regression-tests
+IBP-003 Como … quiero … para …
+Criterios:
+1. …
+IBP-004 Como … quiero … para …
+Criterios:
+1. …
+Pasos: P1 publica un menú para el martes, E1 elige el martes y consulta los platos. Repetir con un día sin menú.
+Esperado: E1 ve solo los platos del martes con sus datos; el día sin menú muestra el estado vacío.
+```
+
+1. **Inventario:** cada Paso, Esperado y criterio se mapea al test que ya lo
+   protege (`archivo:línea`). Lo cubierto se referencia, no se duplica.
+2. **Huecos:** escribe solo lo que falta, en el archivo del flujo que ya existe
+   (no hay carpeta aparte de regresión). Lo no construido queda como `TODO(integración)`.
+3. **Estabilidad:** el conjunto se corre simulando los 7 días de la semana, fin de
+   mes y 31/12, y los tests de sistema 5 veces seguidas. Si uno falla por el test,
+   lo arregla tocando solo `spec/` (si es de un compañero, lo marca aparte); si
+   falla por la app, registra el defecto y no deja el test en la suite.
+4. **Comparación** con el informe anterior de las mismas historias: primero lo que
+   antes pasaba y ahora no.
+
+- Informe: `docs/reports/regression-tests/regression-tests-<dd-mm-aaaa>.md`, con
+  tablas Paso → Esperado → test → estado y criterio → test → estado
+  (✅ estable, 🔧 estabilizado, ➕ nuevo, TODO, 🐞 defecto), la estabilidad por
+  archivo y el comando para volver a correr el conjunto.
+
 ### `/pending-tests` — qué TODOs ya se pueden testear
 
 Busca los `TODO(integración)` que dejaron corridas anteriores y verifica contra el
@@ -125,6 +161,8 @@ Si hay alguno ✅/🟡, lista los IBPs que necesita y deja la plantilla de
 2. Revisar el informe y los `DEFECT-*.md`; commitear los specs en `pis-gogrow` a mano.
 3. Cada tanto, tras nuevos merges → `/pending-tests` → pasarle las historias que
    pide a `/integration-tests`.
+4. Para asegurar historias ya mergeadas → `/regression-tests` con sus Pasos y
+   Esperado; repetirlo con las mismas historias muestra si algo dejó de andar.
 
 ## Otros skills
 

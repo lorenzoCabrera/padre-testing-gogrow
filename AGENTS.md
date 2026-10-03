@@ -15,9 +15,9 @@ working notes.
 padre-testing-gogrow/
 ├── AGENTS.md              # this file
 ├── CLAUDE.md              # same instructions, for Claude Code
-├── opencode.json          # OpenCode: loads .ai/skills, defines /integration-tests, /system-tests, /pending-tests, blocks secret reads
+├── opencode.json          # OpenCode: loads .ai/skills, defines /integration-tests, /system-tests, /regression-tests, /pending-tests, blocks secret reads
 ├── .ai/
-│   └── skills/            # 12 testing + quality-review skills (plain Markdown, any agent can use them)
+│   └── skills/            # 13 testing + quality-review skills (plain Markdown, any agent can use them)
 ├── .claude/
 │   ├── settings.json      # Claude-only hook that enforces the secrets rule below
 │   ├── hooks/
@@ -74,6 +74,7 @@ descriptions say which one wins.
 | `capybara-screenshot` | "Show me what X looks like" or "take a screenshot of X" |
 | `integration-tests` | Writing integration coverage for a user story after it merges to `develop` |
 | `system-tests` | Same as `integration-tests`, but the scenarios come from user-written Pasos/Esperado per block |
+| `regression-tests` | Making already-merged historias protected by tests that exist and are stable, from Pasos/Esperado per block |
 | `pending-tests` | Finding `TODO(integración)` comments now unblocked on `develop` (read-only; asks for the historias) |
 | `rails-code-reviewer` | Reviewing a diff or PR against the conventions in `pis-gogrow/AGENTS.md` |
 | `rails-security-reviewer` | Reviewing changes to auth, OmniAuth, strong params, external input or secrets |
@@ -84,7 +85,7 @@ The four review/metrics skills write dated reports to `docs/reports/` in
 this repo.
 
 **Slash commands.** In OpenCode, `/integration-tests <historia>`,
-`/system-tests <bloques>` and `/pending-tests [ruta]` work (defined in
+`/system-tests <bloques>`, `/regression-tests <bloques>` and `/pending-tests [ruta]` work (defined in
 `opencode.json`). Without slash-command support, treat "run
 <command> for <input>" the same way: read `.ai/skills/<command>/SKILL.md`
 and follow it with that input. Input formats and examples are in
