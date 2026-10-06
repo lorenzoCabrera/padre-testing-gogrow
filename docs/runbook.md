@@ -24,6 +24,7 @@ bin/ci                                     # full local pipeline: rubocop, eslin
 
 | Skill | Trigger | Report lands at |
 |---|---|---|
+| `code-review` | `/code-review <rama o nº PR>` on a teammate's PR; only the branch's diff vs its base | `docs/reports/code-review/PR_REVIEW_<rama>_<date>.md` |
 | `rails-code-reviewer` | after implementing a feature/fix in `pis-gogrow/` | `docs/reports/code-review/CODE_REVIEW_FINDINGS_<date>.md` |
 | `rails-security-reviewer` | change touches auth, input, external calls, secrets | `docs/reports/security-review/SECURITY_REVIEW_FINDINGS_<date>.md` |
 | `rails-database-reviewer` | new/changed migration, model, or scope | `docs/reports/database-review/DATABASE_REVIEW_FINDINGS_<date>.md` |

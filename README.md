@@ -14,7 +14,7 @@ cd pis-gogrow && bin/setup
 Abrir el agente en la raíz de este repo para que los comandos estén disponibles:
 
 - **Claude Code:** lee `.claude/skills` (symlink a `.ai/skills`) y `CLAUDE.md`.
-- **OpenCode:** `opencode.json` carga `AGENTS.md`, los skills y define los cuatro comandos.
+- **OpenCode:** `opencode.json` carga `AGENTS.md`, los skills y define los cinco comandos.
 - **Otros (Codex, Cursor, Aider…):** leen `AGENTS.md`; sin slash commands, pedir
   "corré system-tests con: <bloques>" y el agente sigue `.ai/skills/system-tests/SKILL.md`.
 
@@ -163,6 +163,22 @@ Si hay alguno ✅/🟡, lista los IBPs que necesita y deja la plantilla de
    pide a `/integration-tests`.
 4. Para asegurar historias ya mergeadas → `/regression-tests` con sus Pasos y
    Esperado; repetirlo con las mismas historias muestra si algo dejó de andar.
+
+## `/code-review` — revisar el PR de otro
+
+```
+/code-review feature/IBP-060-cambio-validar-comprobante
+/code-review 85
+/code-review fix/persistir-carrito --base main
+```
+
+- Revisa **solo lo que agrega la rama** contra su base (la del PR, o `develop`):
+  `git diff origin/<base>...origin/<rama>`. Lo que ya estaba no se reporta.
+- Junta `rails-code-reviewer`, `rails-security-reviewer` y `rails-database-reviewer`,
+  más bugs de lógica y tests faltantes. Corre rubocop/eslint/tsc/brakeman sobre los
+  archivos cambiados en un worktree temporal: tu checkout de `pis-gogrow` no se toca.
+- Informe: `docs/reports/code-review/PR_REVIEW_<rama>_<aaaa-mm-dd>.md`, con
+  🔴/🟡/🟢 y veredicto. No comenta en GitHub salvo que se lo pidas.
 
 ## Otros skills
 

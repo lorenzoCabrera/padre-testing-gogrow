@@ -46,7 +46,7 @@ both directories coexist in one Claude Code session opened at this root.
 ## Skills in `.ai/skills/` (symlinked as `.claude/skills/`)
 
 Adapted from a Java/Spring/Angular reference project (`jp-photo-manager`) to
-this stack. Thirteen skills across two groups:
+this stack. Fourteen skills across two groups:
 
 **Testing:** `rspec-developer`, `vitest-rtl-developer`, `capybara-smoke-check`,
 `capybara-system-suite`, `capybara-screenshot`, `integration-tests` (orchestrates the
@@ -55,7 +55,8 @@ other four against a user story's text — run after a story merges to `develop`
 `regression-tests` (same input as system-tests, but starts from existing specs: maps them, fills gaps, proves them stable across dates and repeated runs),
 `pending-tests` (finds `TODO(integración)` now unblocked on develop, asks for the historias)
 
-**Quality review:** `rails-code-reviewer`, `rails-security-reviewer`,
+**Quality review:** `code-review` (reviews only the new code of a teammate's PR
+branch, combining the three reviewers below), `rails-code-reviewer`, `rails-security-reviewer`,
 `rails-database-reviewer`, `rails-quality-metrics`
 
 All four review/metrics skills write dated reports to `docs/reports/` **in

@@ -15,9 +15,9 @@ working notes.
 padre-testing-gogrow/
 ├── AGENTS.md              # this file
 ├── CLAUDE.md              # same instructions, for Claude Code
-├── opencode.json          # OpenCode: loads .ai/skills, defines /integration-tests, /system-tests, /regression-tests, /pending-tests, blocks secret reads
+├── opencode.json          # OpenCode: loads .ai/skills, defines /integration-tests, /system-tests, /regression-tests, /pending-tests, /code-review, blocks secret reads
 ├── .ai/
-│   └── skills/            # 13 testing + quality-review skills (plain Markdown, any agent can use them)
+│   └── skills/            # 14 testing + quality-review skills (plain Markdown, any agent can use them)
 ├── .claude/
 │   ├── settings.json      # Claude-only hook that enforces the secrets rule below
 │   ├── hooks/
@@ -76,6 +76,7 @@ descriptions say which one wins.
 | `system-tests` | Same as `integration-tests`, but the scenarios come from user-written Pasos/Esperado per block |
 | `regression-tests` | Making already-merged historias protected by tests that exist and are stable, from Pasos/Esperado per block |
 | `pending-tests` | Finding `TODO(integración)` comments now unblocked on `develop` (read-only; asks for the historias) |
+| `code-review` | Reviewing only the new code of a teammate's PR branch (`/code-review <rama o nº PR>`), combining the three reviewers below |
 | `rails-code-reviewer` | Reviewing a diff or PR against the conventions in `pis-gogrow/AGENTS.md` |
 | `rails-security-reviewer` | Reviewing changes to auth, OmniAuth, strong params, external input or secrets |
 | `rails-database-reviewer` | Reviewing migrations, associations, validations, queries or indexes |
@@ -85,7 +86,7 @@ The four review/metrics skills write dated reports to `docs/reports/` in
 this repo.
 
 **Slash commands.** In OpenCode, `/integration-tests <historia>`,
-`/system-tests <bloques>`, `/regression-tests <bloques>` and `/pending-tests [ruta]` work (defined in
+`/system-tests <bloques>`, `/regression-tests <bloques>`, `/pending-tests [ruta]` and `/code-review <rama o nº PR>` work (defined in
 `opencode.json`). Without slash-command support, treat "run
 <command> for <input>" the same way: read `.ai/skills/<command>/SKILL.md`
 and follow it with that input. Input formats and examples are in

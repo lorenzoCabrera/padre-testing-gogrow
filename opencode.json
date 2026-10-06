@@ -24,6 +24,10 @@
     "pending-tests": {
       "description": "Find TODO(integración) comments that are now testable (see .ai/skills/pending-tests)",
       "template": "Read .ai/skills/pending-tests/SKILL.md in full and follow it step by step. Optional path to narrow the search:\n\n$ARGUMENTS"
+    },
+    "code-review": {
+      "description": "Review only the new code of a pis-gogrow PR branch (see .ai/skills/code-review)",
+      "template": "Read .ai/skills/code-review/SKILL.md in full and follow it step by step, using this input as the branch name or PR number (if it's empty, list open PRs and ask):\n\n$ARGUMENTS"
     }
   },
   "permission": {
