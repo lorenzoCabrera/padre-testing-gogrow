@@ -49,6 +49,16 @@ committing inside `pis-gogrow/` is always a separate, explicit step.
 | `capybara-system-suite` | committed regression specs under `spec/system/` |
 | `capybara-screenshot` | "what does this page/dialog look like right now" |
 
+## View the app from the phone (`tailscale-preview`)
+
+`/tailscale-preview` serves the current branch's dev app on the private tailnet
+at `https://<pc>.<tailnet>.ts.net/` (Rails on :443, Vite on :8443, via
+`tailscale serve`); `/tailscale-preview bajar` takes it down. Nothing in
+`pis-gogrow/` changes: it starts the `pis-gogrow-tailscale` entry of
+`.claude/launch.json` with the Procfile and Vite wrapper in the skill folder.
+One-time setup: `sudo tailscale set --operator=$USER`. Sign in with the dev
+login form; Google OAuth only redirects to localhost.
+
 ## Where reports go and why
 
 The review/metrics skills, and `integration-tests`, all write into **this

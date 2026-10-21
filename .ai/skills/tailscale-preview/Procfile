@@ -1,0 +1,2 @@
+web: bin/rails s -p 3001
+js: npx vite --config ../.ai/skills/tailscale-preview/vite.config.mts

@@ -185,4 +185,6 @@ Si hay alguno ✅/🟡, lista los IBPs que necesita y deja la plantilla de
 Testing: `rspec-developer`, `vitest-rtl-developer`, `capybara-smoke-check`,
 `capybara-system-suite`, `capybara-screenshot`. Revisión: `rails-code-reviewer`,
 `rails-security-reviewer`, `rails-database-reviewer`, `rails-quality-metrics`.
+Herramientas: `tailscale-preview` (`/tailscale-preview` publica la app de la rama
+actual en la tailnet para verla desde el celular; `/tailscale-preview bajar` la baja).
 Cuándo usar cada uno: `docs/runbook.md`.

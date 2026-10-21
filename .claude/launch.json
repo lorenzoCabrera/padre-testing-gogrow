@@ -1,0 +1,36 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pis-gogrow",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd pis-gogrow && PORT=3001 SOLID_QUEUE_IN_PUMA=1 exec mise exec -- bin/dev"
+      ],
+      "port": 3001
+    },
+    {
+      "name": "pis-gogrow-tailscale",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "H=lorenzocabrera-thinkpad-t480.tail3413ee.ts.net; cd pis-gogrow && rm -f tmp/rails-vite.json && SOLID_QUEUE_IN_PUMA=1 TAILSCALE_HOST=$H RAILS_DEVELOPMENT_HOSTS=$H exec mise exec -- foreman start -d . -f ../.ai/skills/tailscale-preview/Procfile"
+      ],
+      "port": 3001,
+      "autoPort": false
+    },
+    {
+      "name": "pis-gogrow-docker",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": [
+        "compose",
+        "-f",
+        "pis-gogrow/docker-compose.yml",
+        "up",
+        "--build"
+      ],
+      "port": 3001
+    }
+  ]
+}

@@ -46,7 +46,7 @@ both directories coexist in one Claude Code session opened at this root.
 ## Skills in `.ai/skills/` (symlinked as `.claude/skills/`)
 
 Adapted from a Java/Spring/Angular reference project (`jp-photo-manager`) to
-this stack. Fourteen skills across two groups:
+this stack. Fifteen skills across three groups:
 
 **Testing:** `rspec-developer`, `vitest-rtl-developer`, `capybara-smoke-check`,
 `capybara-system-suite`, `capybara-screenshot`, `integration-tests` (orchestrates the
@@ -58,6 +58,9 @@ other four against a user story's text — run after a story merges to `develop`
 **Quality review:** `code-review` (reviews only the new code of a teammate's PR
 branch, combining the three reviewers below), `rails-code-reviewer`, `rails-security-reviewer`,
 `rails-database-reviewer`, `rails-quality-metrics`
+
+**Dev tooling:** `tailscale-preview` (publishes the current branch's dev app on
+the private tailnet to view it from the phone, and takes it down)
 
 All four review/metrics skills write dated reports to `docs/reports/` **in
 this repo**, never inside `pis-gogrow/` — that repo is shared with
