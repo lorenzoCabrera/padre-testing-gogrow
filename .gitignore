@@ -5,3 +5,6 @@
 # Informes generados por los skills (defects, integration-tests, system-tests,
 # quality-metrics, reviews) — quedan solo locales, nunca se commitean.
 /docs/reports/
+
+# Notas del plugin VibeWise (perfil y progreso personales) — solo locales.
+/.vibe-wise/
