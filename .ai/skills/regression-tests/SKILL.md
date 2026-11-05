@@ -75,6 +75,10 @@ don't open new defects for something already registered.
 A test only counts as "regression" if it passes this gate. The set is every spec
 file from the inventory (existing and new), not just what this run wrote.
 
+**Read first.** Check the set against `test-antipatterns.md` (next to this file)
+and fix what applies before running anything. Pattern 1 (fixture dates) never
+shows up in the calendar runs below.
+
 **Against the calendar.** Create this hook in a temp dir **outside both repos**
 (`mktemp -d`; never commit it):
 

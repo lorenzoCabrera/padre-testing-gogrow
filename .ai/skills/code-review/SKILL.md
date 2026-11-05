@@ -115,7 +115,9 @@ In order of weight:
 4. **Tests:** new behaviour (a new branch in a controller/model/service, a new page
    flow) without a spec that would fail if it broke. Name the missing case; don't
    write it. A spec in the diff that asserts only a flash message and not the
-   persisted effect is a finding.
+   persisted effect is a finding. Check every spec the branch adds against
+   `../regression-tests/test-antipatterns.md`; a hit there that you can tie to
+   a date or a run where it breaks is a 🟡 warning.
 5. **PR hygiene:** title/body format from rails-code-reviewer; the PR also mixing
    unrelated changes.
 
